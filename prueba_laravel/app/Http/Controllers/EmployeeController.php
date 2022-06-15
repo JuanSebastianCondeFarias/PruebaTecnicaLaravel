@@ -14,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        return Employee::all();
     }
 
     /**
@@ -25,7 +25,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employee = Employee::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'types_id' => $request->types_id
+          ]);
+
+        return $employee;
     }
 
     /**
@@ -36,7 +43,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return $employee;
     }
 
     /**
@@ -48,7 +55,14 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee->update($request->only(['name', 'phone', 'address']));
+        // return $employee;
+        // $employee->name = $request->name;
+        // $employee->phone = $request->phone;
+        // $employee->address = $request->address;         
+        // $employee->save();
+
+        return response()->json('Se actualizo el registro:'. $employee->id,200);
     }
 
     /**
@@ -59,6 +73,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return response()->json("Se elimino el registro: ".$employee->id,202);
     }
 }
