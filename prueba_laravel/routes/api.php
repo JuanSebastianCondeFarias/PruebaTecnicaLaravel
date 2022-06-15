@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ChildrenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +23,6 @@ use App\Http\Controllers\EmployeeController;
 // });
 
 Route::resource('employees', EmployeeController::class);
+Route::resource('types', TypeController::class);
+Route::resource('contracts', ContractController::class);
+Route::resource('childrens', ChildrenController::class);

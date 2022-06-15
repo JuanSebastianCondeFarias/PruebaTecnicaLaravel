@@ -56,12 +56,7 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         $employee->update($request->only(['name', 'phone', 'address']));
-        // return $employee;
-        // $employee->name = $request->name;
-        // $employee->phone = $request->phone;
-        // $employee->address = $request->address;         
-        // $employee->save();
-
+        
         return response()->json('Se actualizo el registro:'. $employee->id,200);
     }
 

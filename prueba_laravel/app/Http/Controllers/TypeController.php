@@ -14,7 +14,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        return Type::all();
     }
 
     /**
@@ -25,7 +25,11 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $type = Type::create([
+            'name' => $request->name,
+          ]);
+
+        return $type;
     }
 
     /**
@@ -36,7 +40,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return $type;
     }
 
     /**
@@ -48,7 +52,10 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        
+        $type->update($request->only(['name']));
+        
+        return response()->json('Se actualizo el registro:'. $type->id,200);
     }
 
     /**
@@ -59,6 +66,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        
+        $type->delete();
+        return response()->json("Se elimino el registro: ".$type->id,202);
     }
 }

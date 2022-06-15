@@ -14,7 +14,7 @@ class ChildrenController extends Controller
      */
     public function index()
     {
-        //
+        return Children::all();
     }
 
     /**
@@ -25,7 +25,13 @@ class ChildrenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $children = Children::create([
+            'name' => $request->name,
+            'age' => $request->age,
+            'employees_id' => $request->employees_id
+          ]);
+
+        return $children;
     }
 
     /**
@@ -36,7 +42,7 @@ class ChildrenController extends Controller
      */
     public function show(Children $children)
     {
-        //
+        return $children;
     }
 
     /**
@@ -48,7 +54,10 @@ class ChildrenController extends Controller
      */
     public function update(Request $request, Children $children)
     {
-        //
+        
+        $children->update($request->only(['name', 'age']));
+        
+        return response()->json('Se actualizo el registro:'. $children->id,200);
     }
 
     /**
@@ -59,6 +68,7 @@ class ChildrenController extends Controller
      */
     public function destroy(Children $children)
     {
-        //
+        $children->delete();
+        return response()->json("Se elimino el registro: ".$children->id,202);
     }
 }

@@ -14,7 +14,7 @@ class ContractController extends Controller
      */
     public function index()
     {
-        //
+        return Contract::all();
     }
 
     /**
@@ -25,7 +25,14 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contract = Contract::create([
+            'name' => $request->name,
+            'file' => $request->file,
+            'date' => $request->date,
+            'employees_id' => $request->employees_id
+          ]);
+
+        return $contract;
     }
 
     /**
@@ -36,7 +43,7 @@ class ContractController extends Controller
      */
     public function show(Contract $contract)
     {
-        //
+        return $contract;
     }
 
     /**
@@ -48,7 +55,11 @@ class ContractController extends Controller
      */
     public function update(Request $request, Contract $contract)
     {
-        //
+        
+        $contract->update($request->only(['name', 'file', 'date']));
+        
+        return response()->json('Se actualizo el registro:'. $contract->id,200);
+    
     }
 
     /**
@@ -59,6 +70,7 @@ class ContractController extends Controller
      */
     public function destroy(Contract $contract)
     {
-        //
+        $contract->delete();
+        return response()->json("Se elimino el registro: ".$contract->id,202);
     }
 }
