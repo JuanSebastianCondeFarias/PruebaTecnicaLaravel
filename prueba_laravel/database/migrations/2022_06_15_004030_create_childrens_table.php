@@ -14,7 +14,11 @@ class CreateChildrensTable extends Migration
     public function up()
     {
         Schema::create('childrens', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('age');
+            $table->unsignedBigInteger('employees_id');
+            $table->foreign('employees_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }

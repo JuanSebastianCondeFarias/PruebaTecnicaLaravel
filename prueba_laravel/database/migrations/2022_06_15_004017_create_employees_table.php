@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateEmployeesTable extends Migration
 {
-    /**
+    /**     
      * Run the migrations.
      *
      * @return void
@@ -14,7 +14,12 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('address');
+            $table->unsignedBigInteger('types_id');
+            $table->foreign('types_id')->references('id')->on('types');
             $table->timestamps();
         });
     }
