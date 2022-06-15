@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Contract extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'date',
+        'file',
+        'employees_id'
+        
+    ];
+
     public function employee()
     {
         return $this->belongsTo(Employee::class);

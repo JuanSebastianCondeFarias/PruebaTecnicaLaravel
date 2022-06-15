@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'phone',
+        'address',
+        'types_id'
+    ];
+
     public function type()
     {
         return $this->belongsTo(Type::class);
